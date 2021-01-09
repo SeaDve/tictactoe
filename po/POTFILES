@@ -1,0 +1,7 @@
+data/org.seadve.tictactoe.desktop.in
+data/org.seadve.tictactoe.appdata.xml.in
+data/org.seadve.tictactoe.gschema.xml
+src/window.ui
+src/main.py
+src/window.py
+
