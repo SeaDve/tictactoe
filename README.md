@@ -1,5 +1,5 @@
 # Tic-tac-toe
-![alt text](https://github.com/SeaDve/tictactoe/blob/main/Screenshot from 2021-01-09 14-37-55.png?raw=true)
+![alt text](https://github.com/SeaDve/tictactoe/blob/main/Screenshot.png?raw=true)
 
 
 ## Description 
