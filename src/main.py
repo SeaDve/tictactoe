@@ -17,13 +17,19 @@
 
 import gi
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, Gio
 
 class Window(Gtk.Window):
 
     def __init__(self):
-        Gtk.Window.__init__(self, title='TicTacToe')
-        self.set_border_width(10)
+        Gtk.Window.__init__(self)
+        self.set_border_width(6)
+        self.set_default_size(250, 250)
+
+        self.header_bar = Gtk.HeaderBar()
+        self.header_bar.set_show_close_button(True)
+        self.header_bar.props.title = "Tic-Tac-Toe"
+        self.set_titlebar(self.header_bar)
 
         grid = Gtk.Grid()
         grid.set_row_spacing(5)
@@ -62,17 +68,18 @@ class Window(Gtk.Window):
         self.button9.connect("clicked", self.button9_clicked)
         grid.attach(self.button9, 2, 2, 1, 1)
 
-        self.buttonclear =  Gtk.Button(label='reset')
-        self.buttonclear.connect('clicked', self.reset)
-        grid.attach(self.buttonclear, 0, 3, 3, 1)
+        self.buttonclear = Gtk.Button()
+        icon = Gio.ThemedIcon(name="view-refresh-symbolic")
+        self.image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
+        self.buttonclear.set_image(self.image)
+        self.buttonclear.connect("clicked", self.reset)
+        self.header_bar.pack_start(self.buttonclear)
         self.buttonclear.set_sensitive(False)
 
-        self.buttonclear.set_vexpand(True)
         self.button1.set_vexpand(True)
         self.button4.set_vexpand(True)
         self.button7.set_vexpand(True)
 
-        self.buttonclear.set_hexpand(True)
         self.button1.set_hexpand(True)
         self.button2.set_hexpand(True)
         self.button3.set_hexpand(True)
@@ -173,7 +180,7 @@ class Window(Gtk.Window):
 
     def reset(self, widget):
         self.buttonclear.set_sensitive(False)
-        self.buttonclear.set_label('reset')
+        self.header_bar.props.title = "Tic-Tac-Toe"
         self.button_state = ["","","","","","","","",""]
         self.num_turn += 2
         self.button1.set_sensitive(True)
@@ -209,55 +216,56 @@ class Window(Gtk.Window):
     def win_check(self):
         if self.button_state[0] == 'O' and self.button_state[1] == 'O' and self.button_state[2] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[3] == 'O' and self.button_state[4] == 'O' and self.button_state[5] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[6] == 'O' and self.button_state[7] == 'O' and self.button_state[8] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[0] == 'O' and self.button_state[3] == 'O' and self.button_state[6] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[1] == 'O' and self.button_state[4] == 'O' and self.button_state[7] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[2] == 'O' and self.button_state[5] == 'O' and self.button_state[8] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[2] == 'O' and self.button_state[4] == 'O' and self.button_state[6] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[0] == 'O' and self.button_state[4] == 'O' and self.button_state[8] == 'O':
             self.won()
-            self.buttonclear.set_label('X won')
+            self.header_bar.props.title = "X won"
         elif self.button_state[0] == 'X' and self.button_state[1] == 'X' and self.button_state[2] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[3] == 'X' and self.button_state[4] == 'X' and self.button_state[5] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[6] == 'X' and self.button_state[7] == 'X' and self.button_state[8] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[0] == 'X' and self.button_state[3] == 'X' and self.button_state[6] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[1] == 'X' and self.button_state[4] == 'X' and self.button_state[7] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[2] == 'X' and self.button_state[5] == 'X' and self.button_state[8] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[2] == 'X' and self.button_state[4] == 'X' and self.button_state[6] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[0] == 'X' and self.button_state[4] == 'X' and self.button_state[8] == 'X':
             self.won()
-            self.buttonclear.set_label('O won')
+            self.header_bar.props.title = "O won"
         elif self.button_state[0] != '' and self.button_state[1] != '' and self.button_state[2] != '' and self.button_state[3] != '' and self.button_state[4] != '' and self.button_state[5] != '' and self.button_state[6] != '' and self.button_state[7] != '' and self.button_state[8] != '':
             self.won()
-            self.buttonclear.set_label('draw')
+            self.header_bar.props.title = "Draw"
+
 
 window = Window()
 window.connect("delete-event", Gtk.main_quit)
