@@ -1,6 +1,11 @@
 # Tic-tac-toe
-![alt text](https://github.com/SeaDve/tictactoe/blob/main/Screenshot.png?raw=true)
+![alt text](https://github.com/SeaDve/tictactoe/blob/main/ScreenshotV2.png?raw=true)
 
+## What's New
+###  2.0
+
+- Added HeaderBar
+- Restart and winner label is moved to the HeaderBar
 
 ## Description 
 
