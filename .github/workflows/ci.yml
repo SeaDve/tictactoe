@@ -1,0 +1,26 @@
+name: Unit Testing
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+  mypy:
+      name: "Static Type Checker"
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v2
+          with:
+            fetch-depth: 0
+        - uses: actions/setup-python@v1
+          with:
+            python-version: 3.9
+
+        - name: Install dependencies
+          run: |
+            sudo apt update -y
+            sudo apt -y install mypy
+        - name: Check with MyPy
+          run: |
+            mypy --ignore-missing-imports --disallow-incomplete-defs src
