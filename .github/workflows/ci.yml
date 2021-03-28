@@ -16,7 +16,7 @@ jobs:
             fetch-depth: 0
         - name: Install dependencies
           run: |
-            cat /etc/pulse/client.conf
             sudo apt update
             sudo apt install pulseaudio-utils
+            cat /etc/pulse/client.conf
             pactl info
